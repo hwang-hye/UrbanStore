@@ -20,6 +20,8 @@
 		27CA25ED2C1C40520055B4B1 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 27CA25EC2C1C40520055B4B1 /* IQKeyboardManagerSwift */; };
 		27CA25EF2C1C4F690055B4B1 /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA25EE2C1C4F690055B4B1 /* NicknameViewController.swift */; };
 		27CA25F12C1C641E0055B4B1 /* ProfileImgViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA25F02C1C641E0055B4B1 /* ProfileImgViewController.swift */; };
+		27CA25F32C1C8EFA0055B4B1 /* ProfileImgCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA25F22C1C8EFA0055B4B1 /* ProfileImgCollectionViewController.swift */; };
+		27CA25F52C1C93250055B4B1 /* ProfileImgCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA25F42C1C93250055B4B1 /* ProfileImgCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		27CA25E02C1C3F270055B4B1 /* SignViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignViewController.swift; sourceTree = "<group>"; };
 		27CA25EE2C1C4F690055B4B1 /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		27CA25F02C1C641E0055B4B1 /* ProfileImgViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgViewController.swift; sourceTree = "<group>"; };
+		27CA25F22C1C8EFA0055B4B1 /* ProfileImgCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgCollectionViewController.swift; sourceTree = "<group>"; };
+		27CA25F42C1C93250055B4B1 /* ProfileImgCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileImgCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +92,8 @@
 				27CA25E02C1C3F270055B4B1 /* SignViewController.swift */,
 				27CA25EE2C1C4F690055B4B1 /* NicknameViewController.swift */,
 				27CA25F02C1C641E0055B4B1 /* ProfileImgViewController.swift */,
+				27CA25F22C1C8EFA0055B4B1 /* ProfileImgCollectionViewController.swift */,
+				27CA25F42C1C93250055B4B1 /* ProfileImgCollectionViewCell.swift */,
 			);
 			path = Sign;
 			sourceTree = "<group>";
@@ -177,6 +183,8 @@
 			files = (
 				27CA25F12C1C641E0055B4B1 /* ProfileImgViewController.swift in Sources */,
 				27CA25CE2C1B05650055B4B1 /* ViewController.swift in Sources */,
+				27CA25F52C1C93250055B4B1 /* ProfileImgCollectionViewCell.swift in Sources */,
+				27CA25F32C1C8EFA0055B4B1 /* ProfileImgCollectionViewController.swift in Sources */,
 				27CA25EF2C1C4F690055B4B1 /* NicknameViewController.swift in Sources */,
 				27CA25CA2C1B05650055B4B1 /* AppDelegate.swift in Sources */,
 				27CA25CC2C1B05650055B4B1 /* SceneDelegate.swift in Sources */,

@@ -10,8 +10,11 @@ import SnapKit
 
 class NicknameViewController: UIViewController {
     
-    let profileImageView = UIView()
+    let profileImageView = UIImageView()
     let profileImageButton = UIButton()
+    
+    // 이 아래 요소들을 하나의 view로 묶어
+    // 다음 페이지에서 갈아끼울 수는 없을까?
     let nicknameTextField = UITextField()
     let nicknameTextFieldBorder = UIView()
     let nicknameTextLabel = UILabel()
@@ -28,7 +31,7 @@ class NicknameViewController: UIViewController {
 
     func configure() {
         view.backgroundColor = .white
-        title = "PROFILE SETTING"
+        title = "PROFILE SETTING" // 다음 페이지 다녀오면 사라지는 이슈?
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.navigationBar.tintColor = .black
         
@@ -39,6 +42,7 @@ class NicknameViewController: UIViewController {
         let profileImageViewDiameter = 100 - 16
         profileImageButton.layer.cornerRadius = CGFloat(profileImageViewDiameter / 2)
         profileImageButton.setImage(UIImage(named: "profile_0"), for: .normal)
+        profileImageButton.imageView?.contentMode = .scaleAspectFill
         profileImageButton.clipsToBounds = true
         
         nicknameTextField.placeholder = "닉네임을 입력해주세요"
@@ -56,12 +60,11 @@ class NicknameViewController: UIViewController {
         nicknameButton.layer.cornerRadius = 22
         nicknameButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         nicknameButton.addTarget(self, action: #selector(nicknameButtonClicked), for: .touchUpInside)
-
     }
     
     
     @objc func nicknameButtonClicked() {
-        navigationController?.pushViewController(ProfileImgViewController(), animated: true)
+        navigationController?.pushViewController(ProfileImgCollectionViewController(), animated: true)
     }
     
     
