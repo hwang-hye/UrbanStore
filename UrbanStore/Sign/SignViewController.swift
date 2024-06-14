@@ -19,9 +19,13 @@ class SignViewController: UIViewController {
         
         configure()
         configureLayout()
-    
+        
+        startButton.addTarget(self, action: #selector(startButtonClicked), for: .touchUpInside)
     }
     
+    @objc func startButtonClicked() {
+        navigationController?.pushViewController(NicknameViewController(), animated: true)
+    }
     
     func configure() {
         titleLabel.text = "URBAN STORE"
@@ -37,6 +41,7 @@ class SignViewController: UIViewController {
         startButton.layer.backgroundColor = UIColor.black.cgColor
         startButton.layer.cornerRadius = 22
         startButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+    
     }
     
     
@@ -59,6 +64,7 @@ class SignViewController: UIViewController {
             make.height.equalTo(300)
         }
         
+        // starButton bottom Setting 후 전체 레이아웃 위치 달라지는 이유?
         startButton.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(30)
