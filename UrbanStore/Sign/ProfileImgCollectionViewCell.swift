@@ -34,14 +34,20 @@ class ProfileImgCollectionViewCell: UICollectionViewCell {
         profileImageView.layer.cornerRadius = frame.size.width / 2
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
-//        profileImageView.alpha =
         
         profileImageButton.backgroundColor = .white
         profileImageButton.layer.cornerRadius = (frame.size.width - 8) / 2
         profileImageButton.setImage(UIImage(named: "profile_0"), for: .normal)
         profileImageButton.imageView?.contentMode = .scaleAspectFill
         profileImageButton.clipsToBounds = true
-        
+        profileImageButton.addTarget(self, action: #selector(profileImageButtonClicked), for: .touchUpInside)
+
+    }
+    
+    
+    @objc func profileImageButtonClicked() {
+        print("Button Clicked")
+        //
     }
     
     

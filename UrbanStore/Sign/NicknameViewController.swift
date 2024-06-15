@@ -11,7 +11,6 @@ import SnapKit
 class NicknameViewController: UIViewController {
     
     let profileImageView = UIImageView()
-    let profileImageButton = UIButton()
     
     // 이 아래 요소들을 하나의 view로 묶어
     // 다음 페이지에서 갈아끼울 수는 없을까?
@@ -35,15 +34,12 @@ class NicknameViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.navigationBar.tintColor = .black
         
-        profileImageView.backgroundColor = .black
-        profileImageView.layer.cornerRadius = 50
-        
-        profileImageButton.backgroundColor = .white
-        let profileImageViewDiameter = 100 - 16
-        profileImageButton.layer.cornerRadius = CGFloat(profileImageViewDiameter / 2)
-        profileImageButton.setImage(UIImage(named: "profile_0"), for: .normal)
-        profileImageButton.imageView?.contentMode = .scaleAspectFill
-        profileImageButton.clipsToBounds = true
+        profileImageView.backgroundColor = .white
+        profileImageView.image = UIImage(named: "profile_0")
+        profileImageView.layer.borderWidth = 6
+        profileImageView.layer.borderColor = UIColor.black.cgColor
+        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.clipsToBounds = true
         
         nicknameTextField.placeholder = "닉네임을 입력해주세요"
         nicknameTextField.borderStyle = .none
@@ -70,7 +66,6 @@ class NicknameViewController: UIViewController {
     
     func configureLayout() {
         view.addSubview(profileImageView)
-        view.addSubview(profileImageButton)
         view.addSubview(nicknameTextField)
         view.addSubview(nicknameTextFieldBorder)
         view.addSubview(nicknameTextLabel)
@@ -80,9 +75,6 @@ class NicknameViewController: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide).inset(20)
             make.centerX.equalTo(view)
             make.width.height.equalTo(100)
-        }
-        profileImageButton.snp.makeConstraints { make in
-            make.edges.equalTo(profileImageView.snp.edges).inset(8)
         }
         
         nicknameTextField.snp.makeConstraints { make in
@@ -107,5 +99,14 @@ class NicknameViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(30)
             make.height.equalTo(44)
         }
+    }
+    
+    func profileImageViewRadius() {
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        profileImageViewRadius()
     }
 }

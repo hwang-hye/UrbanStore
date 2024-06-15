@@ -12,7 +12,6 @@ import SnapKit
 class ProfileImgCollectionViewController: UIViewController {
     
     let profileImageView = UIImageView()
-    let profileImageButton = UIButton()
 
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
@@ -50,22 +49,18 @@ class ProfileImgCollectionViewController: UIViewController {
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.navigationBar.tintColor = .black
         
-        profileImageView.backgroundColor = .black
-        profileImageView.layer.cornerRadius = 50
-        
-        profileImageButton.backgroundColor = .white
-        let profileImageViewDiameter = 100 - 16
-        profileImageButton.layer.cornerRadius = CGFloat(profileImageViewDiameter / 2)
-        profileImageButton.setImage(UIImage(named: "profile_0"), for: .normal)
-        profileImageButton.imageView?.contentMode = .scaleAspectFill
-        profileImageButton.clipsToBounds = true
+        profileImageView.backgroundColor = .white
+        profileImageView.image = UIImage(named: "profile_0")
+        profileImageView.layer.borderWidth = 6
+        profileImageView.layer.borderColor = UIColor.black.cgColor
+        profileImageView.contentMode = .scaleAspectFill
+        profileImageView.clipsToBounds = true
     }
     
     
     func configureLayout() {
         
         view.addSubview(profileImageView)
-        view.addSubview(profileImageButton)
         
         profileImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -73,15 +68,20 @@ class ProfileImgCollectionViewController: UIViewController {
             make.width.height.equalTo(100)
         }
         
-        profileImageButton.snp.makeConstraints { make in
-            make.edges.equalTo(profileImageView.snp.edges).inset(8)
-        }
-        
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(40)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
+    }
+    
+    func profileImageViewRadius() {
+        profileImageView.layer.cornerRadius = profileImageView.frame.size.width / 2
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        profileImageViewRadius()
     }
 }
 
