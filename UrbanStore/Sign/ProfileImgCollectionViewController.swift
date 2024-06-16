@@ -11,6 +11,7 @@ import SnapKit
 
 class ProfileImgCollectionViewController: UIViewController {
     
+    var profileImages: [UIImage] = []
     let profileImageView = UIImageView()
 
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
@@ -34,12 +35,25 @@ class ProfileImgCollectionViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(collectionView)
         
+        loadImages()
         configure()
         configureLayout()
+        
         
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(ProfileImgCollectionViewCell.self, forCellWithReuseIdentifier: ProfileImgCollectionViewCell.identifier)
+    }
+    
+
+    func loadImages() {
+        // Asset에서 이미지를 로드하여 배열에 저장
+        let n = 13
+        for i in 0..<n {
+            if let image = UIImage(named: "profile_\(i)") {
+                profileImages.append(image)
+            }
+        }
     }
     
     
@@ -90,11 +104,13 @@ extension ProfileImgCollectionViewController: UICollectionViewDelegate, UICollec
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return profileImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileImgCollectionViewCell.identifier, for: indexPath) as! ProfileImgCollectionViewCell
+        
+        cell.profileImageButton.setImage(profileImages[indexPath.item], for: .normal)
 
         return cell
     }

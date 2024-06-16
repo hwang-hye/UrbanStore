@@ -35,7 +35,7 @@ class NicknameViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .black
         
         profileImageView.backgroundColor = .white
-        profileImageView.image = UIImage(named: "profile_0")
+        profileImageView.image = UIImage(named: "profile_\(Int.random(in: 0...11))")
         profileImageView.layer.borderWidth = 6
         profileImageView.layer.borderColor = UIColor.black.cgColor
         profileImageView.contentMode = .scaleAspectFill
@@ -43,10 +43,12 @@ class NicknameViewController: UIViewController {
         
         nicknameTextField.placeholder = "닉네임을 입력해주세요"
         nicknameTextField.borderStyle = .none
+        nicknameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
         
         nicknameTextFieldBorder.backgroundColor = .black
             
-        nicknameTextLabel.text = "닉네임에 @는 포함할 수 없어요"
+        nicknameTextLabel.text = ""
         nicknameTextLabel.font = .systemFont(ofSize: 12, weight: .regular)
         
         nicknameButton.setTitle("완료", for: .normal)
@@ -58,6 +60,66 @@ class NicknameViewController: UIViewController {
         nicknameButton.addTarget(self, action: #selector(nicknameButtonClicked), for: .touchUpInside)
     }
     
+    
+    @objc func textFieldDidChange() {
+        // print("changed \(nicknameTextField.text!)")
+        let nickname = nicknameTextField.text!
+        
+        if !nicknameValidationCount(nickname: nickname) {
+            nicknameTextLabel.text = "2글자 이상 10글자 미만으로 설정해주세요"
+            nicknameTextLabel.textColor = .red
+            return
+        }
+        
+        if !nicknameValidationChar(nickname: nickname) {
+            nicknameTextLabel.text = "닉네임에 @, #, $, % 는 사용할 수 없어요"
+            nicknameTextLabel.textColor = .red
+            return
+        }
+        
+        if !nicknameValidationNotNumber(nickname: nickname) {
+            nicknameTextLabel.text = "닉네임에 숫자는 포함할 수 없어요"
+            nicknameTextLabel.textColor = .red
+            return
+        }
+        
+        nicknameTextLabel.text = "사용할 수 있는 닉네임이에요"
+        nicknameTextLabel.textColor = .blue
+    }
+    
+    func nicknameValidationCount(nickname: String) -> Bool {
+        
+        switch nickname.count {
+        case 0..<2: false
+        case 10...: false
+            
+        default:
+            true
+        }
+    }
+
+
+    func nicknameValidationChar(nickname: String) -> Bool {
+        let specialCharacter = ["@", "#", "$", "%"]
+        
+        for char in specialCharacter {
+            if nickname.contains(char) {
+                return false
+            }
+        }
+        return true
+    }
+
+
+    func nicknameValidationNotNumber(nickname: String) -> Bool {
+        let range = nickname.rangeOfCharacter(from: CharacterSet.decimalDigits)
+        
+        if range != nil {
+            return false // "숫자가 있다"
+        } else {
+            return true // "숫자가 없다"
+        }
+    }
     
     @objc func nicknameButtonClicked() {
         navigationController?.pushViewController(ProfileImgCollectionViewController(), animated: true)
@@ -110,3 +172,5 @@ class NicknameViewController: UIViewController {
         profileImageViewRadius()
     }
 }
+
+
