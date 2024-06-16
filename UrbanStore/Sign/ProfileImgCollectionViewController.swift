@@ -13,6 +13,7 @@ class ProfileImgCollectionViewController: UIViewController {
     
     var profileImages: [UIImage] = []
     let profileImageView = UIImageView()
+    let profileImageButton = UIButton()
 
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
@@ -35,20 +36,19 @@ class ProfileImgCollectionViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(collectionView)
         
-        loadImages()
+        loadProfileImages()
         configure()
         configureLayout()
-        
         
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(ProfileImgCollectionViewCell.self, forCellWithReuseIdentifier: ProfileImgCollectionViewCell.identifier)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(profileImageButtonClicked(notification:)), name: .cellButtonClicked, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(profileImageClicked(notification:)), name: .cellButtonClicked, object: nil)
     }
     
     
-    @objc func profileImageButtonClicked(notification: Notification) {
+    @objc func profileImageClicked(notification: Notification) {
         // NotificationCenter으로 전송받은 image
         // profileImageView image에 전달
         if let image = notification.object as? UIImage {
@@ -57,7 +57,7 @@ class ProfileImgCollectionViewController: UIViewController {
     }
     
 
-    func loadImages() {
+    func loadProfileImages() {
         // Asset에서 이미지를 로드하여 배열에 저장
         let n = 13
         for i in 0..<n {
@@ -80,12 +80,26 @@ class ProfileImgCollectionViewController: UIViewController {
         profileImageView.layer.borderColor = UIColor.black.cgColor
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
+        
+        profileImageButton.setTitle("선택", for: .normal)
+        profileImageButton.setTitleColor(.white, for: .normal)
+        profileImageButton.setTitleColor(.gray, for: .highlighted)
+        profileImageButton.layer.backgroundColor = UIColor.black.cgColor
+        profileImageButton.layer.cornerRadius = 22
+        profileImageButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        profileImageButton.addTarget(self, action: #selector(profileImageButtonClicked), for: .touchUpInside)
+    }
+    
+    
+    @objc func profileImageButtonClicked() {
+        navigationController?.pushViewController(MainViewController(), animated: true)
     }
     
     
     func configureLayout() {
         
         view.addSubview(profileImageView)
+        view.addSubview(profileImageButton)
         
         profileImageView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide)
@@ -96,7 +110,15 @@ class ProfileImgCollectionViewController: UIViewController {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(40)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
-            make.bottom.equalTo(view.safeAreaLayoutGuide)
+            // collectionView가 가진 사이즈만큼
+            // height 설정하는 법?
+            make.height.equalTo(300)
+        }
+        
+        profileImageButton.snp.makeConstraints { make in
+            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(30)
+            make.top.equalTo(collectionView.snp.bottom)
+            make.height.equalTo(44)
         }
     }
     

@@ -40,12 +40,12 @@ class ProfileImgCollectionViewCell: UICollectionViewCell {
         profileImageButton.setImage(UIImage(named: "profile_0"), for: .normal)
         profileImageButton.imageView?.contentMode = .scaleAspectFill
         profileImageButton.clipsToBounds = true
-        profileImageButton.addTarget(self, action: #selector(profileImageButtonClicked), for: .touchUpInside)
+        profileImageButton.addTarget(self, action: #selector(profileImageClicked), for: .touchUpInside)
 
     }
     
     
-    @objc func profileImageButtonClicked() {
+    @objc func profileImageClicked() {
         print("Button Clicked")
         // select된 profileImageButton의 image
         // NotificationCenter 전송
