@@ -43,6 +43,17 @@ class ProfileImgCollectionViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(ProfileImgCollectionViewCell.self, forCellWithReuseIdentifier: ProfileImgCollectionViewCell.identifier)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(profileImageButtonClicked(notification:)), name: .cellButtonClicked, object: nil)
+    }
+    
+    
+    @objc func profileImageButtonClicked(notification: Notification) {
+        // NotificationCenter으로 전송받은 image
+        // profileImageView image에 전달
+        if let image = notification.object as? UIImage {
+            profileImageView.image = image
+        }
     }
     
 
@@ -64,7 +75,7 @@ class ProfileImgCollectionViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .black
         
         profileImageView.backgroundColor = .white
-        profileImageView.image = UIImage(named: "profile_0")
+        profileImageView.image = UIImage(named: "profile_\(Int.random(in: 0...11))")
         profileImageView.layer.borderWidth = 6
         profileImageView.layer.borderColor = UIColor.black.cgColor
         profileImageView.contentMode = .scaleAspectFill

@@ -62,7 +62,6 @@ class NicknameViewController: UIViewController {
     
     
     @objc func textFieldDidChange() {
-        // print("changed \(nicknameTextField.text!)")
         let nickname = nicknameTextField.text!
         
         if !nicknameValidationCount(nickname: nickname) {

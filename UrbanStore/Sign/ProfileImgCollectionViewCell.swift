@@ -47,7 +47,9 @@ class ProfileImgCollectionViewCell: UICollectionViewCell {
     
     @objc func profileImageButtonClicked() {
         print("Button Clicked")
-        //
+        // select된 profileImageButton의 image
+        // NotificationCenter 전송
+        NotificationCenter.default.post(name: .cellButtonClicked, object: profileImageButton.image(for: .selected))
     }
     
     
@@ -63,4 +65,9 @@ class ProfileImgCollectionViewCell: UICollectionViewCell {
             make.edges.equalTo(profileImageView.snp.edges).inset(4)
         }
     }
+}
+
+
+extension Notification.Name {
+    static let cellButtonClicked = Notification.Name("cellButtonClicked")
 }
