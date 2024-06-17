@@ -71,8 +71,8 @@ class MainViewController: UIViewController {
         emptyView.addSubview(emptyImageView)
         emptyView.addSubview(emptyLable)
         view.addSubview(mainView)
-        
-        
+    
+
         searchBar.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(44)

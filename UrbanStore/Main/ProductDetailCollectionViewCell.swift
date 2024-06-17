@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Alamofire
+import Kingfisher
 import SnapKit
 
 class ProductDetailCollectionViewCell: UICollectionViewCell {
@@ -42,6 +44,7 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
         productPrice.text = "105,000원"
         productPrice.font = .systemFont(ofSize: 16, weight: .bold)
     }
+
     
     
     func configureLayout() {
@@ -73,5 +76,14 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
             make.height.equalTo(20)
         }
         
+    }
+    
+    func configure(with item: Item) {
+        productShop.text = item.mallName
+        productTitle.text = item.title
+        productPrice.text = item.lprice
+        if let url = URL(string: item.image) {
+            productImage.kf.setImage(with: url)
+        }
     }
 }
