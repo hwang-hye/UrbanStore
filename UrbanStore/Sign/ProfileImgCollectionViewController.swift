@@ -14,7 +14,6 @@ class ProfileImgCollectionViewController: UIViewController {
     var profileImages: [UIImage] = []
     let profileImageView = UIImageView()
     let profileImageSelectButton = UIButton()
-    // let profileImages = ["profile_0", "profile_1", "profile_2", "profile_3", "profile_4", "profile_5", "profile_6", "profile_7", "profile_8", "profile_9", "profile_10", "profile_11"]
 
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
@@ -46,17 +45,8 @@ class ProfileImgCollectionViewController: UIViewController {
         collectionView.register(ProfileImgCollectionViewCell.self, forCellWithReuseIdentifier: ProfileImgCollectionViewCell.identifier)
         
         selectProfileImage()
-        
-//        NotificationCenter.default.addObserver(self, selector: #selector(profileImageClicked(notification:)), name: .cellButtonClicked, object: nil)
     }
     
-    
-//    @objc func profileImageClicked(notification: Notification) {
-//
-//        if let image = notification.object as? UIImage {
-//            profileImageView.image = image
-//        }
-//    }
     
     func saveImage(named imageName: String) {
         UserDefaults.standard.set(imageName, forKey: "selectProfileImage")
@@ -106,7 +96,8 @@ class ProfileImgCollectionViewController: UIViewController {
     
     
     @objc func profileImageSelectButtonClicked() {
-        navigationController?.pushViewController(MainViewController(), animated: true)
+//        navigationController?.pushViewController(MainViewController(), animated: true)
+        navigationController?.pushViewController(SettingViewController(), animated: true)
     }
     
     
@@ -148,8 +139,6 @@ class ProfileImgCollectionViewController: UIViewController {
 
 
 extension ProfileImgCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return profileImages.count
     }

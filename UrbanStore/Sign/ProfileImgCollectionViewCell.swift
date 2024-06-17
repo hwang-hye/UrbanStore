@@ -40,15 +40,8 @@ class ProfileImgCollectionViewCell: UICollectionViewCell {
         profileImageButton.setImage(UIImage(named: "profile_0"), for: .normal)
         profileImageButton.imageView?.contentMode = .scaleAspectFill
         profileImageButton.clipsToBounds = true
-        //profileImageButton.addTarget(self, action: #selector(profileImageClicked), for: .touchUpInside)
-
     }
     
-    
-//    @objc func profileImageClicked() {
-//        print("Button Clicked")
-//        NotificationCenter.default.post(name: .cellButtonClicked, object: profileImageButton.image(for: .selected))
-//    }
     
     
     func configureLayout() {
@@ -64,8 +57,3 @@ class ProfileImgCollectionViewCell: UICollectionViewCell {
         }
     }
 }
-
-
-//extension Notification.Name {
-//    static let cellButtonClicked = Notification.Name("cellButtonClicked")
-//}
