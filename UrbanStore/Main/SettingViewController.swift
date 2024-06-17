@@ -41,6 +41,12 @@ class SettingViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        configure()
+        loadProfileImage()
+        navigationItem.title = "SETTINGS"
+    }
 
     
     func loadProfileImage() {
@@ -71,6 +77,7 @@ class SettingViewController: UIViewController {
         
         nicknameChangeButton.setTitleColor(.black, for: .normal)
         nicknameChangeButton.setTitleColor(.darkGray, for: .highlighted)
+        nicknameChangeButton.setTitle("Guest", for: .normal)
         nicknameChangeButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         nicknameChangeButton.titleLabel?.numberOfLines = 0
         if let nicknameText = UserDefaults.standard.string(forKey: "nicknameText") {

@@ -74,7 +74,7 @@ class ProfileImgCollectionViewController: UIViewController {
     
     func configure() {
         view.backgroundColor = .white
-        title = "PROFILE SETTING"
+        navigationItem.title = "PROFILE SETTING"
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.navigationBar.tintColor = .black
         
@@ -97,7 +97,18 @@ class ProfileImgCollectionViewController: UIViewController {
     
     @objc func profileImageSelectButtonClicked() {
     
-        navigationController?.pushViewController(TabBarController(), animated: true)
+        // navigationController?.pushViewController(TabBarController(), animated: true)
+        
+        let isRootTabBar = self.view.window?.rootViewController is TabBarController
+        
+        if !isRootTabBar {
+            self.view.window?.rootViewController = TabBarController()
+            self.view.window?.makeKeyAndVisible()
+        } else {
+            navigationController?.popViewController(animated: true)
+            // self.view.window?.rootViewController = TabBarController()
+            // self.view.window?.makeKeyAndVisible()
+        }
     }
     
     

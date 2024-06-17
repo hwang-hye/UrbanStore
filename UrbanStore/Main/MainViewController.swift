@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+
 struct SearchResult {
     var title: String
     let iconImage: UIImage
@@ -15,14 +16,14 @@ struct SearchResult {
 }
 
 class MainViewController: UIViewController {
-    
-    
     let searchBar = UISearchBar()
     
+    // 없는 애
     let emptyView = UIView()
     let emptyImageView = UIImageView()
     let emptyLable = UILabel()
     
+    // 있는애
     let mainView = UIView()
     let mainLabel = UILabel()
     let mainDeleteAllLabel = UILabel()
@@ -41,11 +42,13 @@ class MainViewController: UIViewController {
 //            showMainUI()
 //            //showEmptyUI()
 //        }
+
     }
     
     
     func configure() {
         view.backgroundColor = .white
+//        title = "main"
 //        navigationController?.navigationBar.topItem?.title = ""
 //        navigationController?.navigationBar.tintColor = .black
         
@@ -74,6 +77,12 @@ class MainViewController: UIViewController {
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(44)
         }
+        
+//        webView.snp.makeConstraints { make in
+//            make.top.equalTo(searchBar.snp.bottom)
+//            make.bottom.equalTo(view.safeAreaLayoutGuide)
+//            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
+//        }
         
         emptyView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)

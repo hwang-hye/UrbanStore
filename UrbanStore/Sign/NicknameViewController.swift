@@ -27,10 +27,15 @@ class NicknameViewController: UIViewController {
         configureLayout()
     }
     
+    // 시간차로? 뜨는? 와이?
+    override func viewDidAppear(_ animated: Bool) {
+        navigationItem.title = "PROFILE SETTING"
+    }
+    
 
     func configure() {
         view.backgroundColor = .white
-        title = "PROFILE SETTING" // 다음 페이지 다녀오면 사라지는 이슈?
+        navigationItem.title = "PROFILE SETTING" // 다음 페이지 다녀오면 사라지는 이슈?
         navigationController?.navigationBar.topItem?.title = ""
         navigationController?.navigationBar.tintColor = .black
         
@@ -123,7 +128,16 @@ class NicknameViewController: UIViewController {
     @objc func nicknameButtonClicked() {
         guard let text = nicknameTextField.text else { return }
         UserDefaults.standard.set(text, forKey: "nicknameText")
-        navigationController?.pushViewController(ProfileImgCollectionViewController(), animated: true)
+        
+        let isRootTabBar = self.view.window?.rootViewController is TabBarController
+        
+        if !isRootTabBar {
+            navigationController?.pushViewController(ProfileImgCollectionViewController(), animated: true)
+        } else {
+            navigationController?.popViewController(animated: true)
+            // self.view.window?.rootViewController = TabBarController()
+            // self.view.window?.makeKeyAndVisible()
+        }
     }
     
     
