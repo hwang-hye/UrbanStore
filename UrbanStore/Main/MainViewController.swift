@@ -8,6 +8,12 @@
 import UIKit
 import SnapKit
 
+struct SearchResult {
+    var title: String
+    let iconImage: UIImage
+    let deleteButton: UIButton
+}
+
 class MainViewController: UIViewController {
     
     let searchBar = UISearchBar()
@@ -19,6 +25,7 @@ class MainViewController: UIViewController {
     let mainView = UIView()
     let mainLabel = UILabel()
     let mainDeleteAllLabel = UILabel()
+    let searchResult: [SearchResult] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

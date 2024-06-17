@@ -343,7 +343,7 @@
 				DEVELOPMENT_TEAM = YAZ6T34227;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UrbanStore/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = UrbanStore;
+				INFOPLIST_KEY_CFBundleDisplayName = "황신혜";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
@@ -376,7 +376,7 @@
 				DEVELOPMENT_TEAM = YAZ6T34227;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = UrbanStore/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = UrbanStore;
+				INFOPLIST_KEY_CFBundleDisplayName = "황신혜";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
