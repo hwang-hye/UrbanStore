@@ -97,7 +97,7 @@ class ProfileImgCollectionViewController: UIViewController {
     
     @objc func profileImageSelectButtonClicked() {
     
-        navigationController?.pushViewController(SettingViewController(), animated: true)
+        navigationController?.pushViewController(TabBarController(), animated: true)
     }
     
     

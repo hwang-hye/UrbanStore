@@ -16,6 +16,7 @@ struct SearchResult {
 
 class MainViewController: UIViewController {
     
+    
     let searchBar = UISearchBar()
     
     let emptyView = UIView()
@@ -33,26 +34,23 @@ class MainViewController: UIViewController {
         configure()
         configureLayout()
         
-        if hasSearchHistory() {
-            showEmptyUI()
-            //showMainUI()
-        } else {
-            showMainUI()
-            //showEmptyUI()
-        }
+//        if hasSearchHistory() {
+//            showEmptyUI()
+//            //showMainUI()
+//        } else {
+//            showMainUI()
+//            //showEmptyUI()
+//        }
     }
     
     
     func configure() {
         view.backgroundColor = .white
-        title = "nickname님의 URBANSTORE"
-        navigationController?.navigationBar.topItem?.title = ""
-        navigationController?.navigationBar.tintColor = .black
+//        navigationController?.navigationBar.topItem?.title = ""
+//        navigationController?.navigationBar.tintColor = .black
         
         searchBar.delegate = self
         searchBar.placeholder = "브랜드, 상품 등을 입력하세요"
-        
-        mainView.backgroundColor = .gray
         
         emptyImageView.image = UIImage(named: "empty")
         emptyImageView.contentMode = .scaleAspectFill
@@ -103,19 +101,19 @@ class MainViewController: UIViewController {
     }
     
     
-    func hasSearchHistory() -> Bool {
-        return UserDefaults.standard.string(forKey: "lastSearchQuery") != nil
-    }
-    
-    func showMainUI() {
-        emptyView.isHidden = true
-        mainView.isHidden = false
-    }
-    
-    func showEmptyUI() {
-        emptyView.isHidden = false
-        mainView.isHidden = true
-    }
+//    func hasSearchHistory() -> Bool {
+//        return UserDefaults.standard.string(forKey: "lastSearchQuery") != nil
+//    }
+//    
+//    func showMainUI() {
+//        emptyView.isHidden = true
+//        mainView.isHidden = false
+//    }
+//    
+//    func showEmptyUI() {
+//        emptyView.isHidden = false
+//        mainView.isHidden = true
+//    }
 }
 
 
@@ -124,6 +122,6 @@ extension MainViewController: UISearchBarDelegate {
         guard let searchText = searchBar.text, !searchText.isEmpty else { return }
         UserDefaults.standard.set(searchText, forKey: "lastSearchQuery")
         searchBar.resignFirstResponder()
-        showMainUI()
+//        showMainUI()
     }
 }

@@ -39,9 +39,9 @@ class SettingViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-
-    }
     
+    }
+
     
     func loadProfileImage() {
         if let imageName = UserDefaults.standard.string(forKey: "selectProfileImage"),
@@ -53,9 +53,9 @@ class SettingViewController: UIViewController {
     
     func configure() {
         view.backgroundColor = .white
-        title = "SETTING" 
-        navigationController?.navigationBar.topItem?.title = ""
-        navigationController?.navigationBar.tintColor = .black
+//        title = "SETTING" 
+//        navigationController?.navigationBar.topItem?.title = ""
+//        navigationController?.navigationBar.tintColor = .black
         
 
         profileImageChangeButton.backgroundColor = .white
@@ -64,6 +64,7 @@ class SettingViewController: UIViewController {
         profileImageChangeButton.layer.borderColor = UIColor.black.cgColor
         profileImageChangeButton.contentMode = .scaleAspectFill
         profileImageChangeButton.setImage(UIImage(named: "profile_0"), for: .normal)
+        profileImageChangeButton.addTarget(self, action: #selector(profileImageChangeButtonClicked), for: .touchUpInside)
         
         profileImageChangeButton.imageView?.contentMode = .scaleAspectFill
         profileImageChangeButton.clipsToBounds = true
@@ -75,6 +76,7 @@ class SettingViewController: UIViewController {
         if let nicknameText = UserDefaults.standard.string(forKey: "nicknameText") {
             nicknameChangeButton.setTitle(nicknameText, for: .normal)
         }
+        nicknameChangeButton.addTarget(self, action: #selector(nicknameChangeButtonClicked), for: .touchUpInside)
         
         signUpDateLabel.text = "2024-06-01 가입"
         signUpDateLabel.font = .systemFont(ofSize: 12, weight: .regular)
@@ -88,6 +90,15 @@ class SettingViewController: UIViewController {
         cartLabel.font = .systemFont(ofSize: 12, weight: .bold)
         
         
+    }
+    
+    @objc func profileImageChangeButtonClicked() {
+        navigationController?.pushViewController(ProfileImgCollectionViewController(), animated: true)
+    }
+    
+
+    @objc func nicknameChangeButtonClicked() {
+        navigationController?.pushViewController(NicknameViewController(), animated: true)
     }
     
     
