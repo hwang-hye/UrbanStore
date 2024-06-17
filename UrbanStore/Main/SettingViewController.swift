@@ -34,12 +34,20 @@ class SettingViewController: UIViewController {
 
         configure()
         configureLayout()
+        loadProfileImage()
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-        
-//        nicknameChangeButton.addTarget(self, action: #selector(changeNickname), for: .touchUpInside)
+
+    }
+    
+    
+    func loadProfileImage() {
+        if let imageName = UserDefaults.standard.string(forKey: "selectProfileImage"),
+           let image = UIImage(named: imageName) {
+            profileImageChangeButton.setImage(image, for: .normal)
+        }
     }
     
     
@@ -56,14 +64,17 @@ class SettingViewController: UIViewController {
         profileImageChangeButton.layer.borderColor = UIColor.black.cgColor
         profileImageChangeButton.contentMode = .scaleAspectFill
         profileImageChangeButton.setImage(UIImage(named: "profile_0"), for: .normal)
+        
         profileImageChangeButton.imageView?.contentMode = .scaleAspectFill
         profileImageChangeButton.clipsToBounds = true
         
-        nicknameChangeButton.setTitle("Guest", for: .normal)
         nicknameChangeButton.setTitleColor(.black, for: .normal)
         nicknameChangeButton.setTitleColor(.darkGray, for: .highlighted)
         nicknameChangeButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         nicknameChangeButton.titleLabel?.numberOfLines = 0
+        if let nicknameText = UserDefaults.standard.string(forKey: "nicknameText") {
+            nicknameChangeButton.setTitle(nicknameText, for: .normal)
+        }
         
         signUpDateLabel.text = "2024-06-01 가입"
         signUpDateLabel.font = .systemFont(ofSize: 12, weight: .regular)
@@ -75,6 +86,8 @@ class SettingViewController: UIViewController {
         
         cartLabel.text = "n개의 상품"
         cartLabel.font = .systemFont(ofSize: 12, weight: .bold)
+        
+        
     }
     
     

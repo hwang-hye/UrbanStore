@@ -96,7 +96,7 @@ class ProfileImgCollectionViewController: UIViewController {
     
     
     @objc func profileImageSelectButtonClicked() {
-//        navigationController?.pushViewController(MainViewController(), animated: true)
+    
         navigationController?.pushViewController(SettingViewController(), animated: true)
     }
     
@@ -161,3 +161,5 @@ extension ProfileImgCollectionViewController: UICollectionViewDelegate, UICollec
         saveImage(named: imageName)
     }
 }
+
+

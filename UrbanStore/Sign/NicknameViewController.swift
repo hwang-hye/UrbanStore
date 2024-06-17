@@ -121,8 +121,8 @@ class NicknameViewController: UIViewController {
     }
     
     @objc func nicknameButtonClicked() {
-        let nicknameText = nicknameTextField.text ?? ""
-        UserDefaults.standard.set(nicknameText, forKey: "nickname")
+        guard let text = nicknameTextField.text else { return }
+        UserDefaults.standard.set(text, forKey: "nicknameText")
         navigationController?.pushViewController(ProfileImgCollectionViewController(), animated: true)
     }
     
