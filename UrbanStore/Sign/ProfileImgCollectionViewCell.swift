@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 class ProfileImgCollectionViewCell: UICollectionViewCell {
-    
     static let identifier = "ProfileImgCollectionViewCell"
     
     let profileImageView = UIImageView()
@@ -23,7 +22,6 @@ class ProfileImgCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         configure()
         configureLayout()
         
@@ -65,7 +63,6 @@ class ProfileImgCollectionViewCell: UICollectionViewCell {
             isSelectedCell = false
         }
     }
-    
     
     func configureLayout() {
         contentView.addSubview(profileImageView)

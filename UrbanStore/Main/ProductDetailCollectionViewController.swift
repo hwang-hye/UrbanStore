@@ -11,8 +11,6 @@ import Kingfisher
 import SnapKit
 import WebKit
 
-
-// Item 구조체 정의
 struct Item: Codable {
     let title: String
     let link: String
@@ -21,13 +19,11 @@ struct Item: Codable {
     let mallName: String
 }
 
-// NaverAPIResponse 구조체 정의
 struct NaverAPIResponse: Codable {
     let items: [Item]
 }
 
 class ProductDetailCollectionViewController: UIViewController {
-    
     var items: [Item] = []
     let searchBar = UISearchBar()
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
@@ -53,13 +49,12 @@ class ProductDetailCollectionViewController: UIViewController {
         configureLayout()
         
         searchBar.delegate = self
-        
+
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(ProductDetailCollectionViewCell.self, forCellWithReuseIdentifier: ProductDetailCollectionViewCell.identifier)
     }
     
-
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let query = searchBar.text, !query.isEmpty {
@@ -69,7 +64,7 @@ class ProductDetailCollectionViewController: UIViewController {
     
     func loadItems(query: String) {
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        let url = "https://openapi.naver.com/v1/search/shop.json?query=\(encodedQuery)"
+        let url = "\(APIURL.shopItemURL)\(encodedQuery)"
         let headers: HTTPHeaders = [
             "X-Naver-Client-Id": APIKey.id,
             "X-Naver-Client-Secret": APIKey.Secret]
@@ -84,7 +79,6 @@ class ProductDetailCollectionViewController: UIViewController {
             }
         }
     }
-    
     
     func configure() {
         view.backgroundColor = .white
@@ -102,14 +96,12 @@ class ProductDetailCollectionViewController: UIViewController {
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(44)
         }
-        
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
             make.horizontalEdges.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
 }
-
 
 extension ProductDetailCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate {
     

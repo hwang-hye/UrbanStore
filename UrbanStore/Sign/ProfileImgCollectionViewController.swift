@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 
-
 class ProfileImgCollectionViewController: UIViewController {
     
     var profileImages: [UIImage] = []
@@ -31,7 +30,6 @@ class ProfileImgCollectionViewController: UIViewController {
         return layout
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(collectionView)
@@ -47,11 +45,9 @@ class ProfileImgCollectionViewController: UIViewController {
         selectProfileImage()
     }
     
-    
     func saveImage(named imageName: String) {
         UserDefaults.standard.set(imageName, forKey: "selectProfileImage")
     }
-    
     
     func selectProfileImage() {
         if let imageName = UserDefaults.standard.string(forKey: "selectProfileImage"),
@@ -60,9 +56,7 @@ class ProfileImgCollectionViewController: UIViewController {
         }
     }
     
-
     func loadProfileImages() {
-        // Asset에서 이미지를 로드하여 배열에 저장
         let n = 13
         for i in 0..<n {
             if let image = UIImage(named: "profile_\(i)") {
@@ -70,7 +64,6 @@ class ProfileImgCollectionViewController: UIViewController {
             }
         }
     }
-    
     
     func configure() {
         view.backgroundColor = .white
@@ -94,11 +87,7 @@ class ProfileImgCollectionViewController: UIViewController {
         profileImageSelectButton.addTarget(self, action: #selector(profileImageSelectButtonClicked), for: .touchUpInside)
     }
     
-    
     @objc func profileImageSelectButtonClicked() {
-    
-        // navigationController?.pushViewController(TabBarController(), animated: true)
-        
         let isRootTabBar = self.view.window?.rootViewController is TabBarController
         
         if !isRootTabBar {
@@ -106,14 +95,10 @@ class ProfileImgCollectionViewController: UIViewController {
             self.view.window?.makeKeyAndVisible()
         } else {
             navigationController?.popViewController(animated: true)
-            // self.view.window?.rootViewController = TabBarController()
-            // self.view.window?.makeKeyAndVisible()
         }
     }
     
-    
     func configureLayout() {
-        
         view.addSubview(profileImageView)
         view.addSubview(profileImageSelectButton)
         
@@ -122,7 +107,6 @@ class ProfileImgCollectionViewController: UIViewController {
             make.centerX.equalTo(view)
             make.width.height.equalTo(100)
         }
-        
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(40)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
@@ -130,7 +114,6 @@ class ProfileImgCollectionViewController: UIViewController {
             // height 설정하는 법?
             make.height.equalTo(300)
         }
-        
         profileImageSelectButton.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(30)
             make.top.equalTo(collectionView.snp.bottom)
@@ -148,7 +131,6 @@ class ProfileImgCollectionViewController: UIViewController {
     }
 }
 
-
 extension ProfileImgCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return profileImages.count
@@ -164,7 +146,6 @@ extension ProfileImgCollectionViewController: UICollectionViewDelegate, UICollec
         
         return cell
     }
-    
     
     @objc func profileImageButtonClicked(_ sender: UIButton) {
         let imageName = "profile_\(sender.tag)"// profileImages[sender.tag]

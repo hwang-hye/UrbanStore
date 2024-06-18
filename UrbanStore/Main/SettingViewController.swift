@@ -23,7 +23,6 @@ class SettingViewController: UIViewController {
     let signUpDateLabel = UILabel()
     let arrowImageView = UIImageView()
     let cartLabel = UILabel()
-    
     let tableView = UITableView()
     
     override func viewDidLoad() {
@@ -49,7 +48,6 @@ class SettingViewController: UIViewController {
             profileImageChangeButton.setImage(image, for: .normal)
         }
     }
-    
     
     func configure() {
         view.backgroundColor = .white

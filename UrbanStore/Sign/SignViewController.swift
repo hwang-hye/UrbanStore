@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 
 class SignViewController: UIViewController {
-    
     let titleLabel = UILabel()
     let titleImageView = UIImageView()
     var startButton = UIButton()
@@ -42,9 +41,7 @@ class SignViewController: UIViewController {
         startButton.layer.backgroundColor = UIColor.accent.cgColor
         startButton.layer.cornerRadius = 22
         startButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
-    
     }
-    
     
     func configureLayout() {
         view.backgroundColor = .white

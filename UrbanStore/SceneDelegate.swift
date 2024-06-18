@@ -24,11 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         } else {
             let rootViewController = UINavigationController(rootViewController: SignViewController())
             window?.rootViewController = rootViewController
-
         }
-        
         window?.makeKeyAndVisible()
-        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

@@ -8,7 +8,6 @@
 import UIKit
 import SnapKit
 
-
 struct SearchResult {
     var title: String
     let iconImage: UIImage
@@ -18,12 +17,10 @@ struct SearchResult {
 class MainViewController: UIViewController {
     let searchBar = UISearchBar()
     
-    // 없는 애
     let emptyView = UIView()
     let emptyImageView = UIImageView()
     let emptyLable = UILabel()
     
-    // 있는애
     let mainView = UIView()
     let mainLabel = UILabel()
     let mainDeleteAllLabel = UILabel()
@@ -31,7 +28,6 @@ class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configure()
         configureLayout()
         
@@ -42,15 +38,10 @@ class MainViewController: UIViewController {
 //            showMainUI()
 //            //showEmptyUI()
 //        }
-
     }
-    
     
     func configure() {
         view.backgroundColor = .white
-//        title = "main"
-//        navigationController?.navigationBar.topItem?.title = ""
-//        navigationController?.navigationBar.tintColor = .black
         
         searchBar.delegate = self
         searchBar.placeholder = "브랜드, 상품 등을 입력하세요"
@@ -61,8 +52,6 @@ class MainViewController: UIViewController {
         emptyLable.text = "최근 검색어가 없어요"
         emptyLable.font = .systemFont(ofSize: 16, weight: .bold)
         emptyLable.textAlignment = .center
-
-        
     }
     
     func configureLayout() {
@@ -71,18 +60,11 @@ class MainViewController: UIViewController {
         emptyView.addSubview(emptyImageView)
         emptyView.addSubview(emptyLable)
         view.addSubview(mainView)
-    
 
         searchBar.snp.makeConstraints { make in
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(44)
         }
-        
-//        webView.snp.makeConstraints { make in
-//            make.top.equalTo(searchBar.snp.bottom)
-//            make.bottom.equalTo(view.safeAreaLayoutGuide)
-//            make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
-//        }
         
         emptyView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
@@ -109,7 +91,6 @@ class MainViewController: UIViewController {
         }
     }
     
-    
 //    func hasSearchHistory() -> Bool {
 //        return UserDefaults.standard.string(forKey: "lastSearchQuery") != nil
 //    }
@@ -124,7 +105,6 @@ class MainViewController: UIViewController {
 //        mainView.isHidden = true
 //    }
 }
-
 
 extension MainViewController: UISearchBarDelegate {
     func searchBarButtonClicked(_ searchBar: UISearchBar) {
