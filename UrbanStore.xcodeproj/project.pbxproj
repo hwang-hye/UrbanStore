@@ -13,6 +13,7 @@
 		2746D3BE2C2091F800D9A004 /* ProductDetailCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746D3BD2C2091F800D9A004 /* ProductDetailCollectionViewController.swift */; };
 		2746D3C02C20946800D9A004 /* ProductDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746D3BF2C20946800D9A004 /* ProductDetailCollectionViewCell.swift */; };
 		2746D3C42C20AC8000D9A004 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746D3C32C20AC8000D9A004 /* APIKey.swift */; };
+		2746D3C62C20B59A00D9A004 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746D3C52C20B59A00D9A004 /* ProductDetailViewController.swift */; };
 		27CA25CA2C1B05650055B4B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA25C92C1B05650055B4B1 /* AppDelegate.swift */; };
 		27CA25CC2C1B05650055B4B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA25CB2C1B05650055B4B1 /* SceneDelegate.swift */; };
 		27CA25CE2C1B05650055B4B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA25CD2C1B05650055B4B1 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 		2746D3BD2C2091F800D9A004 /* ProductDetailCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailCollectionViewController.swift; sourceTree = "<group>"; };
 		2746D3BF2C20946800D9A004 /* ProductDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		2746D3C32C20AC8000D9A004 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		2746D3C52C20B59A00D9A004 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		27CA25C62C1B05650055B4B1 /* UrbanStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UrbanStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CA25C92C1B05650055B4B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27CA25CB2C1B05650055B4B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				2746D3B92C20223F00D9A004 /* SettingViewController.swift */,
 				2746D3BD2C2091F800D9A004 /* ProductDetailCollectionViewController.swift */,
 				2746D3BF2C20946800D9A004 /* ProductDetailCollectionViewCell.swift */,
+				2746D3C52C20B59A00D9A004 /* ProductDetailViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 				2746D3BA2C20223F00D9A004 /* SettingViewController.swift in Sources */,
 				2746D3BE2C2091F800D9A004 /* ProductDetailCollectionViewController.swift in Sources */,
 				2746D3C42C20AC8000D9A004 /* APIKey.swift in Sources */,
+				2746D3C62C20B59A00D9A004 /* ProductDetailViewController.swift in Sources */,
 				27CA25CC2C1B05650055B4B1 /* SceneDelegate.swift in Sources */,
 				27CA25E12C1C3F270055B4B1 /* SignViewController.swift in Sources */,
 				2746D38D2C1F47A500D9A004 /* MainViewController.swift in Sources */,

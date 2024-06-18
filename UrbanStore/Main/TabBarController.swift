@@ -15,7 +15,7 @@ class TabBarController: UITabBarController {
         tabBar.tintColor = .orange
         tabBar.unselectedItemTintColor = .gray
 
-        let search = MainViewController()
+        let search = ProductDetailCollectionViewController()
         let navSearch = UINavigationController(rootViewController: search)
         navSearch.tabBarItem = UITabBarItem(title: "검색", image: UIImage(systemName: "magnifyingglass"), tag: 0)
         

@@ -39,9 +39,9 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
         productShop.text = "shopname"
         productShop.font = .systemFont(ofSize: 12, weight: .regular)
         productShop.textColor = .gray
-        productTitle.text = "키보드 키캡 레오폴드"
+        productTitle.text = "productTitle"
         productTitle.font = .systemFont(ofSize: 14, weight: .semibold)
-        productPrice.text = "105,000원"
+        productPrice.text = "price원"
         productPrice.font = .systemFont(ofSize: 16, weight: .bold)
     }
 
@@ -75,15 +75,14 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
             make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide)
             make.height.equalTo(20)
         }
-        
     }
     
     func configure(with item: Item) {
         productShop.text = item.mallName
         productTitle.text = item.title
-        productPrice.text = item.lprice
-        if let url = URL(string: item.image) {
-            productImage.kf.setImage(with: url)
+        productPrice.text = "\(item.lprice)원"
+        if let itemImageURL = URL(string: item.image) {
+            productImage.kf.setImage(with: itemImageURL)
         }
     }
 }

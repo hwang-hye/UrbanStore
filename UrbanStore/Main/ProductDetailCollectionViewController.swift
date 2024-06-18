@@ -9,6 +9,7 @@ import UIKit
 import Alamofire
 import Kingfisher
 import SnapKit
+import WebKit
 
 
 // Item 구조체 정의
@@ -58,7 +59,7 @@ class ProductDetailCollectionViewController: UIViewController {
         collectionView.register(ProductDetailCollectionViewCell.self, forCellWithReuseIdentifier: ProductDetailCollectionViewCell.identifier)
     }
     
-    
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let query = searchBar.text, !query.isEmpty {
@@ -121,5 +122,12 @@ extension ProductDetailCollectionViewController: UICollectionViewDelegate, UICol
         let item = items[indexPath.item]
         cell.configure(with: item)
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let item = items[indexPath.item]
+        let productDetailVC = ProductDetailViewController()
+        productDetailVC.link = item.link
+        navigationController?.pushViewController(productDetailVC, animated: true)
     }
 }
