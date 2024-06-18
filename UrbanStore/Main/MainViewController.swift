@@ -32,11 +32,9 @@ class MainViewController: UIViewController {
         configureLayout()
         
 //        if hasSearchHistory() {
-//            showEmptyUI()
-//            //showMainUI()
-//        } else {
 //            showMainUI()
-//            //showEmptyUI()
+//        } else {
+//            showEmptyUI()
 //        }
     }
     
@@ -91,10 +89,10 @@ class MainViewController: UIViewController {
         }
     }
     
-//    func hasSearchHistory() -> Bool {
-//        return UserDefaults.standard.string(forKey: "lastSearchQuery") != nil
-//    }
-//    
+    func hasSearchHistory() -> Bool {
+        return UserDefaults.standard.string(forKey: "lastSearchQuery") != nil
+    }
+    
 //    func showMainUI() {
 //        emptyView.isHidden = true
 //        mainView.isHidden = false

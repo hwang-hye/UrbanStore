@@ -148,7 +148,7 @@ extension ProfileImgCollectionViewController: UICollectionViewDelegate, UICollec
     }
     
     @objc func profileImageButtonClicked(_ sender: UIButton) {
-        let imageName = "profile_\(sender.tag)"// profileImages[sender.tag]
+        let imageName = "profile_\(sender.tag)"
         profileImageView.image = sender.image(for: .normal)
         saveImage(named: imageName)
     }
