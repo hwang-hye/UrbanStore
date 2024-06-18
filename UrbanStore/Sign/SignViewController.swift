@@ -55,13 +55,11 @@ class SignViewController: UIViewController {
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(50)
             make.height.equalTo(44)
         }
-        
         titleImageView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(80)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(50)
             make.height.equalTo(300)
         }
-        
         // starButton bottom Setting 후 전체 레이아웃 위치 달라지는 이유?
         startButton.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide)

@@ -26,6 +26,7 @@ struct NaverAPIResponse: Codable {
 class ProductDetailCollectionViewController: UIViewController {
     var items: [Item] = []
     let searchBar = UISearchBar()
+    let nickname = UserDefaults.standard.string(forKey: "nicknameText")
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
     func collectionViewLayout() -> UICollectionViewLayout {
@@ -53,6 +54,10 @@ class ProductDetailCollectionViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(ProductDetailCollectionViewCell.self, forCellWithReuseIdentifier: ProductDetailCollectionViewCell.identifier)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        navigationItem.title = "\(nickname ?? "") URBAN STORE"
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -120,6 +125,7 @@ extension ProductDetailCollectionViewController: UICollectionViewDelegate, UICol
         let item = items[indexPath.item]
         let productDetailVC = ProductDetailViewController()
         productDetailVC.link = item.link
+        productDetailVC.navigationTitle = item.title
         navigationController?.pushViewController(productDetailVC, animated: true)
     }
 }
