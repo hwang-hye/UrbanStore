@@ -16,9 +16,7 @@ enum SettingOptions: String, CaseIterable {
     case deleteAccount = "탈퇴하기"
 }
 
-
 class SettingViewController: UIViewController {
-    
     let profileSettingView = UIView()
     let profileImageChangeButton = UIButton()
     let nicknameChangeButton = UIButton()
@@ -28,10 +26,8 @@ class SettingViewController: UIViewController {
     
     let tableView = UITableView()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configure()
         configureLayout()
         loadProfileImage()
@@ -39,7 +35,6 @@ class SettingViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-    
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -48,7 +43,6 @@ class SettingViewController: UIViewController {
         navigationItem.title = "SETTINGS"
     }
 
-    
     func loadProfileImage() {
         if let imageName = UserDefaults.standard.string(forKey: "selectProfileImage"),
            let image = UIImage(named: imageName) {
@@ -59,15 +53,11 @@ class SettingViewController: UIViewController {
     
     func configure() {
         view.backgroundColor = .white
-//        title = "SETTING" 
-//        navigationController?.navigationBar.topItem?.title = ""
-//        navigationController?.navigationBar.tintColor = .black
-        
 
         profileImageChangeButton.backgroundColor = .white
         profileImageChangeButton.layer.borderWidth = 6
         profileImageChangeButton.layer.cornerRadius = 40
-        profileImageChangeButton.layer.borderColor = UIColor.black.cgColor
+        profileImageChangeButton.layer.borderColor = UIColor.accent.cgColor
         profileImageChangeButton.contentMode = .scaleAspectFill
         profileImageChangeButton.setImage(UIImage(named: "profile_0"), for: .normal)
         profileImageChangeButton.addTarget(self, action: #selector(profileImageChangeButtonClicked), for: .touchUpInside)
@@ -76,7 +66,7 @@ class SettingViewController: UIViewController {
         profileImageChangeButton.clipsToBounds = true
         
         nicknameChangeButton.setTitleColor(.black, for: .normal)
-        nicknameChangeButton.setTitleColor(.darkGray, for: .highlighted)
+        nicknameChangeButton.setTitleColor(.sub, for: .highlighted)
         nicknameChangeButton.setTitle("Guest", for: .normal)
         nicknameChangeButton.titleLabel?.font = .systemFont(ofSize: 18, weight: .bold)
         nicknameChangeButton.titleLabel?.numberOfLines = 0
@@ -90,24 +80,20 @@ class SettingViewController: UIViewController {
         signUpDateLabel.textColor = .darkGray
         
         arrowImageView.image = UIImage(systemName: "chevron.right")
-        arrowImageView.tintColor = .darkGray
+        arrowImageView.tintColor = .sub
         arrowImageView.contentMode = .scaleAspectFill
         
         cartLabel.text = "n개의 상품"
         cartLabel.font = .systemFont(ofSize: 12, weight: .bold)
-        
-        
     }
     
     @objc func profileImageChangeButtonClicked() {
         navigationController?.pushViewController(ProfileImgCollectionViewController(), animated: true)
     }
     
-
     @objc func nicknameChangeButtonClicked() {
         navigationController?.pushViewController(NicknameViewController(), animated: true)
     }
-    
     
     func configureLayout() {
         view.addSubview(profileSettingView)
@@ -122,36 +108,30 @@ class SettingViewController: UIViewController {
             make.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.height.equalTo(100)
         }
-        
         profileImageChangeButton.snp.makeConstraints { make in
             make.top.leading.equalTo(profileSettingView.safeAreaLayoutGuide).offset(10)
             make.width.height.equalTo(80)
         }
-        
         nicknameChangeButton.snp.makeConstraints { make in
             make.top.equalTo(profileSettingView.snp.top).inset(26)
             make.leading.equalTo(profileImageChangeButton.snp.trailing).offset(10)
             make.height.equalTo(24)
         }
-        
         signUpDateLabel.snp.makeConstraints { make in
             make.leading.equalTo(profileImageChangeButton.snp.trailing).offset(10)
             make.top.equalTo(nicknameChangeButton.snp.bottom).offset(1)
             make.height.equalTo(18)
         }
-        
         arrowImageView.snp.makeConstraints { make in
             make.trailing.equalTo(profileSettingView.snp.trailing).inset(10)
             make.centerY.equalTo(profileSettingView.safeAreaLayoutGuide)
             make.width.height.equalTo(20)
         }
-        
         tableView.snp.makeConstraints { make in
             make.top.equalTo(profileSettingView.snp.bottom)
             make.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(view.safeAreaLayoutGuide)
         }
-        
         cartLabel.snp.makeConstraints { make in
             make.top.equalTo(profileSettingView.snp.bottom).offset(10)
             make.trailing.equalTo(view.safeAreaLayoutGuide).inset(10)
@@ -159,7 +139,6 @@ class SettingViewController: UIViewController {
         }
     }
 }
-
 
 extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -170,7 +149,6 @@ extension SettingViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         cell.textLabel?.text = SettingOptions.allCases[indexPath.row].rawValue
         cell.textLabel?.font = UIFont.systemFont(ofSize: 12, weight: .medium)
-        
         return cell
     }
 }

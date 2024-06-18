@@ -31,6 +31,7 @@ class SignViewController: UIViewController {
         titleLabel.text = "URBAN STORE"
         titleLabel.font = .systemFont(ofSize: 36, weight: .bold)
         titleLabel.textAlignment = .center
+        titleLabel.textColor = .accent
         
         titleImageView.image = UIImage(named: "launch")
         titleImageView.contentMode = .scaleAspectFill
@@ -38,7 +39,7 @@ class SignViewController: UIViewController {
         startButton.setTitle("시작하기", for: .normal)
         startButton.setTitleColor(.white, for: .normal)
         startButton.setTitleColor(.gray, for: .highlighted)
-        startButton.layer.backgroundColor = UIColor.black.cgColor
+        startButton.layer.backgroundColor = UIColor.accent.cgColor
         startButton.layer.cornerRadius = 22
         startButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
     

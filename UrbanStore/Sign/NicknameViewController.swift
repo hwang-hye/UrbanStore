@@ -42,7 +42,7 @@ class NicknameViewController: UIViewController {
         profileImageView.backgroundColor = .white
         profileImageView.image = UIImage(named: "profile_\(Int.random(in: 0...11))")
         profileImageView.layer.borderWidth = 6
-        profileImageView.layer.borderColor = UIColor.black.cgColor
+        profileImageView.layer.borderColor = UIColor.accent.cgColor
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
         
@@ -51,7 +51,7 @@ class NicknameViewController: UIViewController {
         nicknameTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
         
-        nicknameTextFieldBorder.backgroundColor = .black
+        nicknameTextFieldBorder.backgroundColor = .darkGray
             
         nicknameTextLabel.text = ""
         nicknameTextLabel.font = .systemFont(ofSize: 12, weight: .regular)
@@ -59,7 +59,7 @@ class NicknameViewController: UIViewController {
         nicknameButton.setTitle("완료", for: .normal)
         nicknameButton.setTitleColor(.white, for: .normal)
         nicknameButton.setTitleColor(.gray, for: .highlighted)
-        nicknameButton.layer.backgroundColor = UIColor.black.cgColor
+        nicknameButton.layer.backgroundColor = UIColor.accent.cgColor
         nicknameButton.layer.cornerRadius = 22
         nicknameButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         nicknameButton.addTarget(self, action: #selector(nicknameButtonClicked), for: .touchUpInside)
@@ -88,7 +88,7 @@ class NicknameViewController: UIViewController {
         }
         
         nicknameTextLabel.text = "사용할 수 있는 닉네임이에요"
-        nicknameTextLabel.textColor = .blue
+        nicknameTextLabel.textColor = .accent
     }
     
     func nicknameValidationCount(nickname: String) -> Bool {
@@ -135,8 +135,6 @@ class NicknameViewController: UIViewController {
             navigationController?.pushViewController(ProfileImgCollectionViewController(), animated: true)
         } else {
             navigationController?.popViewController(animated: true)
-            // self.view.window?.rootViewController = TabBarController()
-            // self.view.window?.makeKeyAndVisible()
         }
     }
     

@@ -81,14 +81,14 @@ class ProfileImgCollectionViewController: UIViewController {
         profileImageView.backgroundColor = .white
         profileImageView.image = UIImage(named: "profile_\(Int.random(in: 0...11))")
         profileImageView.layer.borderWidth = 6
-        profileImageView.layer.borderColor = UIColor.black.cgColor
+        profileImageView.layer.borderColor = UIColor.accent.cgColor
         profileImageView.contentMode = .scaleAspectFill
         profileImageView.clipsToBounds = true
         
         profileImageSelectButton.setTitle("선택", for: .normal)
         profileImageSelectButton.setTitleColor(.white, for: .normal)
         profileImageSelectButton.setTitleColor(.gray, for: .highlighted)
-        profileImageSelectButton.layer.backgroundColor = UIColor.black.cgColor
+        profileImageSelectButton.layer.backgroundColor = UIColor.accent.cgColor
         profileImageSelectButton.layer.cornerRadius = 22
         profileImageSelectButton.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
         profileImageSelectButton.addTarget(self, action: #selector(profileImageSelectButtonClicked), for: .touchUpInside)
@@ -161,7 +161,7 @@ extension ProfileImgCollectionViewController: UICollectionViewDelegate, UICollec
         cell.profileImageButton.setImage(image, for: .normal)
         cell.profileImageButton.tag = indexPath.item
         cell.profileImageButton.addTarget(self, action: #selector(profileImageButtonClicked), for: .touchUpInside)
-
+        
         return cell
     }
     
@@ -172,5 +172,4 @@ extension ProfileImgCollectionViewController: UICollectionViewDelegate, UICollec
         saveImage(named: imageName)
     }
 }
-
 

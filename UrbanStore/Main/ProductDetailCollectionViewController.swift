@@ -13,7 +13,7 @@ import WebKit
 
 
 // Item 구조체 정의
-struct Item: Decodable {
+struct Item: Codable {
     let title: String
     let link: String
     let image: String
@@ -22,7 +22,7 @@ struct Item: Decodable {
 }
 
 // NaverAPIResponse 구조체 정의
-struct NaverAPIResponse: Decodable {
+struct NaverAPIResponse: Codable {
     let items: [Item]
 }
 
