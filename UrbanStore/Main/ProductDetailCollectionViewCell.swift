@@ -37,6 +37,7 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
         productShop.textColor = .gray
         productTitle.text = "productTitle"
         productTitle.font = .systemFont(ofSize: 14, weight: .semibold)
+        productTitle.numberOfLines = 2
         productPrice.text = "price원"
         productPrice.font = .systemFont(ofSize: 16, weight: .bold)
     }
@@ -60,7 +61,6 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
         productTitle.snp.makeConstraints { make in
             make.top.equalTo(productShop.snp.bottom).offset(2)
             make.horizontalEdges.equalToSuperview()
-            make.height.equalTo(18)
         }
         
         productPrice.snp.makeConstraints { make in
