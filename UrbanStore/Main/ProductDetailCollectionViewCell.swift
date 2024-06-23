@@ -30,7 +30,8 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
     
     func configure() {
         productImage.backgroundColor = .black
-        productImage.layer.cornerRadius = 10
+        productImage.layer.cornerRadius = 14
+        productImage.clipsToBounds = true
         productShop.text = "shopname"
         productShop.font = .systemFont(ofSize: 12, weight: .regular)
         productShop.textColor = .gray
@@ -47,24 +48,24 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(productPrice)
         
         productImage.snp.makeConstraints { make in
-            make.top.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide)
+            make.top.horizontalEdges.equalToSuperview()
             make.height.equalTo(180)
         }
         productShop.snp.makeConstraints { make in
             make.top.equalTo(productImage.snp.bottom).offset(4)
-            make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide)
+            make.horizontalEdges.equalToSuperview()
             make.height.equalTo(16)
         }
         
         productTitle.snp.makeConstraints { make in
             make.top.equalTo(productShop.snp.bottom).offset(2)
-            make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide)
+            make.horizontalEdges.equalToSuperview()
             make.height.equalTo(18)
         }
         
         productPrice.snp.makeConstraints { make in
             make.top.equalTo(productTitle.snp.bottom).offset(2)
-            make.horizontalEdges.equalTo(contentView.safeAreaLayoutGuide)
+            make.horizontalEdges.equalToSuperview()
             make.height.equalTo(20)
         }
     }
