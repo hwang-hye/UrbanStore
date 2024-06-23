@@ -28,6 +28,15 @@ struct NaverAPIResponse: Codable {
 class ProductDetailCollectionViewController: UIViewController {
     var items: [Item] = []
     var filteredItems: [Item] = []
+    var totalLikeCount: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: "totalLikeCount")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "totalLikeCount")
+            NotificationCenter.default.post(name: .totalLikeCountUpdated, object: nil, userInfo: ["totalLikeCount": newValue])
+        }
+    }
     let searchBar = UISearchBar()
     let resultView = UIView()
     let searchResultLabel = UILabel()
@@ -59,6 +68,8 @@ class ProductDetailCollectionViewController: UIViewController {
         super.viewDidLoad()
         view.addSubview(collectionView)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTotalLikes(_:)), name: .likeButtonTapped, object: nil)
+        
         configure()
         configureLayout()
         
@@ -76,6 +87,16 @@ class ProductDetailCollectionViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         navigationItem.title = "\(nickname ?? "") URBAN STORE"
+    }
+    
+    @objc func updateTotalLikes(_ notification: Notification) {
+        if let isLiked = notification.userInfo?["isLiked"] as? Bool {
+            totalLikeCount += isLiked ? 1 : -1
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .likeButtonTapped, object: nil)
     }
     
     @objc func accuracyButtonClicked() {
@@ -150,6 +171,7 @@ class ProductDetailCollectionViewController: UIViewController {
             currentPage = 1
             loadItems(query: query, page: currentPage)
         }
+        navigationItem.title = searchBar.text
     }
     
     func loadItems(query: String, page: Int) {
@@ -321,5 +343,10 @@ extension ProductDetailCollectionViewController: UIScrollViewDelegate {
             }
         }
     }
+}
+
+extension Notification.Name {
+    static let likeButtonTapped = Notification.Name("likeButtonTapped")
+    static let totalLikeCountUpdated = Notification.Name("totalLikeCountUpdated")
 }
 

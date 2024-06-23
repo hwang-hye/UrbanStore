@@ -22,8 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let rootViewController = UINavigationController(rootViewController: TabBarController())
             window?.rootViewController = rootViewController
         } else {
-//            let rootViewController = UINavigationController(rootViewController: SignViewController())
-            let rootViewController = UINavigationController(rootViewController: ProductDetailCollectionViewController())
+            let rootViewController = UINavigationController(rootViewController: SignViewController())
+//            let rootViewController = UINavigationController(rootViewController: ProductDetailCollectionViewController())
             window?.rootViewController = rootViewController
         }
         window?.makeKeyAndVisible()

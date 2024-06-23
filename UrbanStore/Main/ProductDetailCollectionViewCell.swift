@@ -13,7 +13,10 @@ import SnapKit
 class ProductDetailCollectionViewCell: UICollectionViewCell {
     static let identifier = "ProductDetailCollectionViewCell"
     
+    let productImageView = UIView()
     let productImage = UIImageView()
+    let productLikeButton = UIButton()
+    var isLiked = false
     let productShop = UILabel()
     let productTitle = UILabel()
     let productPrice = UILabel()
@@ -22,10 +25,23 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         configure()
         configureLayout()
+        
+        productLikeButton.addTarget(self, action: #selector(productLikeButtonClicked), for: .touchUpInside)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func productLikeButtonClicked() {
+        isLiked.toggle()
+        NotificationCenter.default.post(name: .likeButtonTapped, object: nil, userInfo: ["isLiked": isLiked])
+        updateLikeButtonUI()
+    }
+    
+    func updateLikeButtonUI() {
+        let likeButtonImage = isLiked ? "handbag.fill" : "handbag"
+        productLikeButton.setImage(UIImage(systemName: likeButtonImage), for: .normal)
     }
     
     func configure() {
@@ -40,17 +56,32 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
         productTitle.numberOfLines = 2
         productPrice.text = "price원"
         productPrice.font = .systemFont(ofSize: 16, weight: .bold)
+        productLikeButton.backgroundColor = .white
+        productLikeButton.layer.cornerRadius = 6
+        productLikeButton.setImage(UIImage(systemName: "handbag"), for: .normal)
+        productLikeButton.tintColor = .black
     }
     
     func configureLayout() {
-        contentView.addSubview(productImage)
+        contentView.addSubview(productImageView)
+        productImageView.addSubview(productImage)
+        productImageView.addSubview(productLikeButton)
         contentView.addSubview(productShop)
         contentView.addSubview(productTitle)
         contentView.addSubview(productPrice)
-        
+      
+        productImageView.snp.makeConstraints { make in
+            make.top.horizontalEdges.equalToSuperview()
+            make.height.equalTo(180)
+        }
         productImage.snp.makeConstraints { make in
             make.top.horizontalEdges.equalToSuperview()
             make.height.equalTo(180)
+        }
+        productLikeButton.snp.makeConstraints { make in
+            make.bottom.equalTo(productImageView.safeAreaLayoutGuide).inset(10)
+            make.trailing.equalTo(productImageView.safeAreaLayoutGuide).inset(10)
+            make.width.height.equalTo(30)
         }
         productShop.snp.makeConstraints { make in
             make.top.equalTo(productImage.snp.bottom).offset(4)
@@ -62,7 +93,6 @@ class ProductDetailCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(productShop.snp.bottom).offset(2)
             make.horizontalEdges.equalToSuperview()
         }
-        
         productPrice.snp.makeConstraints { make in
             make.top.equalTo(productTitle.snp.bottom).offset(2)
             make.horizontalEdges.equalToSuperview()

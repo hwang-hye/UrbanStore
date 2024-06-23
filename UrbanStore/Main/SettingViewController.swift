@@ -34,7 +34,25 @@ class SettingViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        
+        let totalLikeCount = UserDefaults.standard.integer(forKey: "totalLikeCount")
+        cartLabel.text = "\(totalLikeCount)개의 상품"
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLikeCount(_:)), name: .totalLikeCountUpdated, object: nil)
+
     }
+    
+    @objc func updateLikeCount(_ notification: Notification) {
+            if let totalLikeCount = notification.userInfo?["totalLikeCount"] as? Int {
+                cartLabel.text = "\(totalLikeCount)개의 상품"
+            }
+        }
+        
+        deinit {
+            NotificationCenter.default.removeObserver(self, name: .totalLikeCountUpdated, object: nil)
+        }
+
+
     
     override func viewDidAppear(_ animated: Bool) {
         configure()
@@ -81,7 +99,7 @@ class SettingViewController: UIViewController {
         arrowImageView.tintColor = .sub
         arrowImageView.contentMode = .scaleAspectFill
         
-        cartLabel.text = "n개의 상품"
+        cartLabel.textColor = .darkGray
         cartLabel.font = .systemFont(ofSize: 12, weight: .bold)
     }
     
