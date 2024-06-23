@@ -31,11 +31,10 @@ class MainViewController: UIViewController {
         configure()
         configureLayout()
         
-//        if hasSearchHistory() {
-//            showMainUI()
-//        } else {
-//            showEmptyUI()
-//        }
+        if let lastSearchQuery = UserDefaults.lastSearchQuery {
+            searchBar.text = lastSearchQuery
+        }
+
     }
     
     func configure() {
@@ -89,26 +88,26 @@ class MainViewController: UIViewController {
         }
     }
     
-    func hasSearchHistory() -> Bool {
-        return UserDefaults.standard.string(forKey: "lastSearchQuery") != nil
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let query = searchBar.text, !query.isEmpty {
+            UserDefaults.lastSearchQuery = query
+            
+            let productVC = ProductDetailCollectionViewController()
+            navigationController?.pushViewController(productVC, animated: true)
+        }
     }
-    
-//    func showMainUI() {
-//        emptyView.isHidden = true
-//        mainView.isHidden = false
-//    }
-//    
-//    func showEmptyUI() {
-//        emptyView.isHidden = false
-//        mainView.isHidden = true
-//    }
+
 }
 
 extension MainViewController: UISearchBarDelegate {
-    func searchBarButtonClicked(_ searchBar: UISearchBar) {
-        guard let searchText = searchBar.text, !searchText.isEmpty else { return }
-        UserDefaults.standard.set(searchText, forKey: "lastSearchQuery")
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-//        showMainUI()
+    }
+}
+
+extension UserDefaults {
+    static var lastSearchQuery: String? {
+        get { return UserDefaults.standard.string(forKey: "lastSearchQuery") }
+        set { UserDefaults.standard.set(newValue, forKey: "lastSearchQuery") }
     }
 }

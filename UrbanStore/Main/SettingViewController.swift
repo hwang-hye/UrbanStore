@@ -162,8 +162,6 @@ class SettingViewController: UIViewController {
         })
         let confirmAction = UIAlertAction(title: "확인", style: .destructive, handler: { _ in
             
-//            UserDefaults.standard.set(false, forKey: "isUser")
-            
             let domain = Bundle.main.bundleIdentifier! // 현재 앱의 bundle identifier 가져오기
             UserDefaults.standard.removePersistentDomain(forName: domain) // 해당 bundle identifier에 저장된 모든 UserDefaults 데이터 제거
             UserDefaults.standard.synchronize()

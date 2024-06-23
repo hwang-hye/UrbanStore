@@ -83,10 +83,17 @@ class ProductDetailCollectionViewController: UIViewController {
         dateButton.addTarget(self, action: #selector(dateButtonClicked), for: .touchUpInside)
         highPriceButton.addTarget(self, action: #selector(highPriceButtonClicked), for: .touchUpInside)
         lowPriceButton.addTarget(self, action: #selector(lowPriceButtonClicked), for: .touchUpInside)
+        
+        if let lastSearchQuery = UserDefaults.lastSearchQuery {
+                searchBar.text = lastSearchQuery
+            }
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         navigationItem.title = "\(nickname ?? "") URBAN STORE"
+        searchBar.becomeFirstResponder() // 검색바에 포커스 주기
+
     }
     
     @objc func updateTotalLikes(_ notification: Notification) {
@@ -168,6 +175,7 @@ class ProductDetailCollectionViewController: UIViewController {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let query = searchBar.text, !query.isEmpty {
+            UserDefaults.lastSearchQuery = query
             currentPage = 1
             loadItems(query: query, page: currentPage)
         }
@@ -344,6 +352,7 @@ extension ProductDetailCollectionViewController: UIScrollViewDelegate {
         }
     }
 }
+
 
 extension Notification.Name {
     static let likeButtonTapped = Notification.Name("likeButtonTapped")

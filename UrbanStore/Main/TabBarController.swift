@@ -13,15 +13,25 @@ class TabBarController: UITabBarController {
         
         tabBar.tintColor = .orange
         tabBar.unselectedItemTintColor = .gray
-
-        let search = ProductDetailCollectionViewController()
-        let navSearch = UINavigationController(rootViewController: search)
+        
+        let lastSearchQuery = UserDefaults.standard.string(forKey: "lastSearchQuery")
+        let searchViewController: UIViewController
+        
+        if let lastSearch = lastSearchQuery, !lastSearch.isEmpty {
+            searchViewController = ProductDetailCollectionViewController()
+        } else {
+            searchViewController = MainViewController()
+        }
+        
+        let navSearch = UINavigationController(rootViewController: searchViewController)
         navSearch.tabBarItem = UITabBarItem(title: "검색", image: UIImage(systemName: "magnifyingglass"), tag: 0)
         
         let setting = SettingViewController()
         let navSetting = UINavigationController(rootViewController: setting)
-        navSetting.tabBarItem = UITabBarItem(title: "설정", image: UIImage(systemName: "person"), tag: 0)
+        navSetting.tabBarItem = UITabBarItem(title: "설정", image: UIImage(systemName: "person"), tag: 1)
         
         setViewControllers([navSearch, navSetting], animated: true)
+        selectedViewController = navSearch
     }
 }
+
