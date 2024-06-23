@@ -36,6 +36,10 @@ class ProductDetailCollectionViewController: UIViewController {
     let highPriceButton = UIButton()
     let lowPriceButton = UIButton()
     let nickname = UserDefaults.standard.string(forKey: "nicknameText")
+    var currentPage = 1
+    var totalPageCount = 1
+    let itemsPerPage = 30
+    var isLoading = false
     lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout())
     
     func collectionViewLayout() -> UICollectionViewLayout {
@@ -140,29 +144,39 @@ class ProductDetailCollectionViewController: UIViewController {
         collectionView.reloadData()
     }
     
-
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let query = searchBar.text, !query.isEmpty {
-            loadItems(query: query)
+            currentPage = 1
+            loadItems(query: query, page: currentPage)
         }
     }
     
-    func loadItems(query: String) {
+    func loadItems(query: String, page: Int) {
+        guard !isLoading else { return }
+            isLoading = true
+        
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        let url = "\(APIURL.shopItemURL)\(encodedQuery)"
+//        let displayCount = 100 // 네이버API 요청 최대 갯수
+        let start = (page - 1) * itemsPerPage + 1
+        let url = "\(APIURL.shopItemURL)\(encodedQuery)&display=\(itemsPerPage)&start=\(start)"
         let headers: HTTPHeaders = [
             "X-Naver-Client-Id": APIKey.id,
             "X-Naver-Client-Secret": APIKey.Secret]
         
         AF.request(url, method: .get, headers: headers).responseDecodable(of: NaverAPIResponse.self) { response in
+            self.isLoading = false
             switch response.result {
             case .success(let result):
-                self.items = result.items
+                if page == 1 {
+                    self.items = result.items
+                } else {
+                    self.items.append(contentsOf: result.items)
+                }
+                
                 self.filteredItems = self.items
-                let total = result.total
-                self.searchResultLabel.text = "\(total)개의 검색결과"
+                self.searchResultLabel.text = "\(result.total)개의 검색결과"
+                self.totalPageCount = (result.total + self.itemsPerPage - 1) / self.itemsPerPage
                 self.collectionView.reloadData()
             case .failure(let error):
                 print("Failed to load items: \(error)")
@@ -293,3 +307,19 @@ extension ProductDetailCollectionViewController: UICollectionViewDelegate, UICol
         navigationController?.pushViewController(productDetailVC, animated: true)
     }
 }
+
+extension ProductDetailCollectionViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let frameHeight = scrollView.frame.size.height
+        
+        if offsetY > contentHeight - frameHeight * 2, !isLoading, currentPage < totalPageCount {
+            currentPage += 1
+            if let query = searchBar.text, !query.isEmpty {
+                loadItems(query: query, page: currentPage)
+            }
+        }
+    }
+}
+
