@@ -13,19 +13,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
-        let data = UserDefaults.standard.bool(forKey: "isUser")
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: windowScene)
         
-        guard let scene = (scene as? UIWindowScene) else { return }
-        window = UIWindow(windowScene: scene)
+        let isUserLoggedIn = UserDefaults.standard.bool(forKey: "isUser")
+        let totalLikeCount = UserDefaults.standard.integer(forKey: "totalLikeCount")
+        let profileImageName = UserDefaults.standard.string(forKey: "selectProfileImage") ?? ""
+        let nicknameText = UserDefaults.standard.string(forKey: "nicknameText") ?? ""
         
-        if data {
+        if isUserLoggedIn || totalLikeCount > 0 || !profileImageName.isEmpty || !nicknameText.isEmpty {
             let rootViewController = UINavigationController(rootViewController: TabBarController())
             window?.rootViewController = rootViewController
         } else {
             let rootViewController = UINavigationController(rootViewController: SignViewController())
-//            let rootViewController = UINavigationController(rootViewController: ProductDetailCollectionViewController())
             window?.rootViewController = rootViewController
         }
+        
         window?.makeKeyAndVisible()
     }
 
