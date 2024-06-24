@@ -184,34 +184,64 @@ class ProductDetailCollectionViewController: UIViewController {
     
     func loadItems(query: String, page: Int) {
         guard !isLoading else { return }
-            isLoading = true
+                isLoading = true
         
         let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-//        let displayCount = 100 // 네이버API 요청 최대 갯수
         let start = (page - 1) * itemsPerPage + 1
-        let url = "\(APIURL.shopItemURL)\(encodedQuery)&display=\(itemsPerPage)&start=\(start)"
-        let headers: HTTPHeaders = [
-            "X-Naver-Client-Id": APIKey.id,
-            "X-Naver-Client-Secret": APIKey.Secret]
         
-        AF.request(url, method: .get, headers: headers).responseDecodable(of: NaverAPIResponse.self) { response in
+        ProductManager.callRequest(encodedQuery: encodedQuery, itemsPerPage: itemsPerPage, start: start) { [weak self] result in // 클로저 내부에서 self를 약한 참조로 캡처하여 강한 참조 순환을 방지
+            guard let self = self else { return }
             self.isLoading = false
-            switch response.result {
-            case .success(let result):
+            
+            switch result {
+            case .success(let response):
                 if page == 1 {
-                    self.items = result.items
+                    self.items = response.items
                 } else {
-                    self.items.append(contentsOf: result.items)
+                    self.items.append(contentsOf: response.items)
                 }
                 
                 self.filteredItems = self.items
-                self.searchResultLabel.text = "\(result.total)개의 검색결과"
-                self.totalPageCount = (result.total + self.itemsPerPage - 1) / self.itemsPerPage
+                self.searchResultLabel.text = "\(response.total)개의 검색결과"
+                self.totalPageCount = (response.total + self.itemsPerPage - 1) / self.itemsPerPage
                 self.collectionView.reloadData()
+                
             case .failure(let error):
-                print("Failed to load items: \(error)")
+                print("Error")
             }
         }
+            
+// 리팩토링 전 코드
+//        func loadItems(query: String, page: Int) {
+//        guard !isLoading else { return }
+//            isLoading = true
+//        
+//        let encodedQuery = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+////        let displayCount = 100 // 네이버API 요청 최대 갯수
+//        let start = (page - 1) * itemsPerPage + 1
+//        let url = "\(APIURL.shopItemURL)\(encodedQuery)&display=\(itemsPerPage)&start=\(start)"
+//        let headers: HTTPHeaders = [
+//            "X-Naver-Client-Id": APIKey.id,
+//            "X-Naver-Client-Secret": APIKey.Secret]
+//        
+//        AF.request(url, method: .get, headers: headers).responseDecodable(of: NaverAPIResponse.self) { response in
+//            self.isLoading = false
+//            switch response.result {
+//            case .success(let result):
+//                if page == 1 {
+//                    self.items = result.items
+//                } else {
+//                    self.items.append(contentsOf: result.items)
+//                }
+//                
+//                self.filteredItems = self.items
+//                self.searchResultLabel.text = "\(result.total)개의 검색결과"
+//                self.totalPageCount = (result.total + self.itemsPerPage - 1) / self.itemsPerPage
+//                self.collectionView.reloadData()
+//            case .failure(let error):
+//                print("Failed to load items: \(error)")
+//            }
+//       }
     }
     
     func configure() {

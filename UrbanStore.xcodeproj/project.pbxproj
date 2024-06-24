@@ -14,6 +14,7 @@
 		2746D3C02C20946800D9A004 /* ProductDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746D3BF2C20946800D9A004 /* ProductDetailCollectionViewCell.swift */; };
 		2746D3C42C20AC8000D9A004 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746D3C32C20AC8000D9A004 /* APIKey.swift */; };
 		2746D3C62C20B59A00D9A004 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746D3C52C20B59A00D9A004 /* ProductDetailViewController.swift */; };
+		277853092C298E4B00A2FE8A /* ProductManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277853082C298E4B00A2FE8A /* ProductManager.swift */; };
 		27CA25CA2C1B05650055B4B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA25C92C1B05650055B4B1 /* AppDelegate.swift */; };
 		27CA25CC2C1B05650055B4B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA25CB2C1B05650055B4B1 /* SceneDelegate.swift */; };
 		27CA25CE2C1B05650055B4B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27CA25CD2C1B05650055B4B1 /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 		2746D3BF2C20946800D9A004 /* ProductDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailCollectionViewCell.swift; sourceTree = "<group>"; };
 		2746D3C32C20AC8000D9A004 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		2746D3C52C20B59A00D9A004 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
+		277853082C298E4B00A2FE8A /* ProductManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductManager.swift; sourceTree = "<group>"; };
 		27CA25C62C1B05650055B4B1 /* UrbanStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UrbanStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27CA25C92C1B05650055B4B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27CA25CB2C1B05650055B4B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		27CA25C82C1B05650055B4B1 /* UrbanStore */ = {
 			isa = PBXGroup;
 			children = (
+				277853082C298E4B00A2FE8A /* ProductManager.swift */,
 				2746D38B2C1F478E00D9A004 /* Main */,
 				27CA25DF2C1C3EEE0055B4B1 /* Sign */,
 				27CA25C92C1B05650055B4B1 /* AppDelegate.swift */,
@@ -208,6 +211,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				27CA25CE2C1B05650055B4B1 /* ViewController.swift in Sources */,
+				277853092C298E4B00A2FE8A /* ProductManager.swift in Sources */,
 				27CA25F52C1C93250055B4B1 /* ProfileImgCollectionViewCell.swift in Sources */,
 				27CA25F32C1C8EFA0055B4B1 /* ProfileImgCollectionViewController.swift in Sources */,
 				2746D3BC2C2071A700D9A004 /* TabBarController.swift in Sources */,
