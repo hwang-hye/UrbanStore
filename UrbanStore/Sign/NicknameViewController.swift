@@ -19,15 +19,30 @@ class NicknameViewController: UIViewController {
     let nicknameTextLabel = UILabel()
     let nicknameButton = UIButton()
     
+    let viewModel = NicknameViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         configure()
         configureLayout()
+        bindData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         navigationItem.title = "PROFILE SETTING"
+    }
+    
+    func bindData() {
+        viewModel.outputValidationText.bind { value in
+            self.nicknameTextLabel.text = value
+        }
+        
+        viewModel.outputValid.bind { value in
+            self.nicknameTextLabel.textColor = value ? .accent : .red
+            self.nicknameButton.backgroundColor = value ? .accent : .lightGray
+            self.nicknameButton.isEnabled = value
+        }
     }
     
     func configure() {
@@ -61,56 +76,7 @@ class NicknameViewController: UIViewController {
     }
     
     @objc func textFieldDidChange() {
-        let nickname = nicknameTextField.text!
-        
-        if !nicknameValidationCount(nickname: nickname) {
-            nicknameTextLabel.text = "2글자 이상 10글자 미만으로 설정해주세요"
-            nicknameTextLabel.textColor = .red
-            return
-        }
-        if !nicknameValidationChar(nickname: nickname) {
-            nicknameTextLabel.text = "닉네임에 @, #, $, % 는 사용할 수 없어요"
-            nicknameTextLabel.textColor = .red
-            return
-        }
-        if !nicknameValidationNotNumber(nickname: nickname) {
-            nicknameTextLabel.text = "닉네임에 숫자는 포함할 수 없어요"
-            nicknameTextLabel.textColor = .red
-            return
-        }
-        nicknameTextLabel.text = "사용할 수 있는 닉네임이에요"
-        nicknameTextLabel.textColor = .accent
-    }
-    
-    func nicknameValidationCount(nickname: String) -> Bool {
-        
-        switch nickname.count {
-        case 0..<2: false
-        case 10...: false
-        default:
-            true
-        }
-    }
-
-    func nicknameValidationChar(nickname: String) -> Bool {
-        let specialCharacter = ["@", "#", "$", "%"]
-        
-        for char in specialCharacter {
-            if nickname.contains(char) {
-                return false
-            }
-        }
-        return true
-    }
-
-    func nicknameValidationNotNumber(nickname: String) -> Bool {
-        let range = nickname.rangeOfCharacter(from: CharacterSet.decimalDigits)
-        
-        if range != nil {
-            return false // "숫자가 있다"
-        } else {
-            return true // "숫자가 없다"
-        }
+        viewModel.inputId.value = nicknameTextField.text!
     }
     
     @objc func nicknameButtonClicked() {

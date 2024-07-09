@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		273844FA2C3D2F40009BD841 /* NicknameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273844F92C3D2F40009BD841 /* NicknameViewModel.swift */; };
+		273844FC2C3D2FC3009BD841 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 273844FB2C3D2FC3009BD841 /* Observable.swift */; };
 		2746D38D2C1F47A500D9A004 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746D38C2C1F47A500D9A004 /* MainViewController.swift */; };
 		2746D3BA2C20223F00D9A004 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746D3B92C20223F00D9A004 /* SettingViewController.swift */; };
 		2746D3BC2C2071A700D9A004 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2746D3BB2C2071A700D9A004 /* TabBarController.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		273844F92C3D2F40009BD841 /* NicknameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewModel.swift; sourceTree = "<group>"; };
+		273844FB2C3D2FC3009BD841 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		2746D38C2C1F47A500D9A004 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2746D3B92C20223F00D9A004 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		2746D3BB2C2071A700D9A004 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -69,6 +73,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		273844F82C3D2F23009BD841 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				273844F92C3D2F40009BD841 /* NicknameViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		2746D38B2C1F478E00D9A004 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,6 +114,7 @@
 		27CA25C82C1B05650055B4B1 /* UrbanStore */ = {
 			isa = PBXGroup;
 			children = (
+				273844F82C3D2F23009BD841 /* ViewModel */,
 				277853082C298E4B00A2FE8A /* ProductManager.swift */,
 				2746D38B2C1F478E00D9A004 /* Main */,
 				27CA25DF2C1C3EEE0055B4B1 /* Sign */,
@@ -112,6 +125,7 @@
 				27CA25D42C1B05650055B4B1 /* LaunchScreen.storyboard */,
 				27CA25D72C1B05650055B4B1 /* Info.plist */,
 				2746D3C32C20AC8000D9A004 /* APIKey.swift */,
+				273844FB2C3D2FC3009BD841 /* Observable.swift */,
 			);
 			path = UrbanStore;
 			sourceTree = "<group>";
@@ -214,6 +228,7 @@
 				277853092C298E4B00A2FE8A /* ProductManager.swift in Sources */,
 				27CA25F52C1C93250055B4B1 /* ProfileImgCollectionViewCell.swift in Sources */,
 				27CA25F32C1C8EFA0055B4B1 /* ProfileImgCollectionViewController.swift in Sources */,
+				273844FA2C3D2F40009BD841 /* NicknameViewModel.swift in Sources */,
 				2746D3BC2C2071A700D9A004 /* TabBarController.swift in Sources */,
 				27CA25EF2C1C4F690055B4B1 /* NicknameViewController.swift in Sources */,
 				27CA25CA2C1B05650055B4B1 /* AppDelegate.swift in Sources */,
@@ -221,6 +236,7 @@
 				2746D3BE2C2091F800D9A004 /* ProductDetailCollectionViewController.swift in Sources */,
 				2746D3C42C20AC8000D9A004 /* APIKey.swift in Sources */,
 				2746D3C62C20B59A00D9A004 /* ProductDetailViewController.swift in Sources */,
+				273844FC2C3D2FC3009BD841 /* Observable.swift in Sources */,
 				27CA25CC2C1B05650055B4B1 /* SceneDelegate.swift in Sources */,
 				27CA25E12C1C3F270055B4B1 /* SignViewController.swift in Sources */,
 				2746D38D2C1F47A500D9A004 /* MainViewController.swift in Sources */,
